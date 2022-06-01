@@ -1,0 +1,22 @@
+url:
+  ytx: https://smsportal.yuntongxun.com/smsview/sendQuery
+
+header:
+  web: {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+  }
+
+data:
+  ytx: {
+    'startTime':'2021-06-10',
+    'endTime':'2021-06-10',
+    'status': '-1',
+    'accountId': '8a48b55150ccc4290150d0985f88117c',
+    'sqlCount': '1',
+    'intSms': '0',
+    'curPage': '1',
+    'interimInfo': '98|2021-06-10|0',
+    'sign': '6986c8f0d26d27645777ff99127e442d',
+    'timeStamp': '1623288782'
+
+  }
