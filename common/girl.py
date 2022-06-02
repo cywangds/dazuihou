@@ -6,26 +6,18 @@
 
 from pydantic import BaseModel
 from fastapi import FastAPI
-from MysqlObject import *
+#from MysqlObject import *
 import random
 from time import strftime,localtime
 import time
+import pymysql
+
 
 app = FastAPI()
-
 class Mysqlcy(object):
 
     def __init__(self):
         self.connect()
-
-    #     华为新测试线mysql数据库信息：
-    # 连接地址：saas-db-test-huawei
-    # 端口：3306
-    # 用户名：saas_test_hw
-    # 密码：SaaS2022#Sql
-    # 实例名：saas_db_test_hw
-
-
 
     def connect(self):
         #self.db=pymysql.connect(host='39.97.246.118',user='saas_test',password='SaaS2019#Sql',db='saas_db_test',port=3306,charset='utf8')
@@ -203,7 +195,6 @@ class Mysqlcy(object):
             self.conn.commit;
 
 
-
 class Item(BaseModel):
     a: str = None
     b: str = None
@@ -224,18 +215,9 @@ def shua():
     # time.sleep(a)
     return {"status":'200'}
 
-
-@app.get('/zh')
-def zh():
-
-    res = {"res":"张宏最菜"}
-    return res
-
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app=app,
                 host="10.0.20.114",
                 port=8089,
                 workers=1)
-    # for i in range(1,50000):
-    #     Mysqlcy().szwz()
