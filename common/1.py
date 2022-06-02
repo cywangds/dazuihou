@@ -43,12 +43,13 @@ class AesCrypt():
 
     def decrypt1(self, str, base=64):
         res_text = self.cryptor.decrypt(base64.b64decode(str)).decode('utf-8')
-        return json.loads(res_text.replace('\x07', '').strip())
+        #return json.loads(res_text.replace('\x07', '').strip())
+        return res_text.replace('\x07', '').strip()
 ans={'1':'1'}
 
 
 if __name__ == '__main__':
     c=AesCrypt().encrypt(json.dumps(ans))
     print(c)
-    c=AesCrypt().decrypt1(json.dumps(c))
-    print(c.strip())
+    c=AesCrypt().decrypt(c)
+    print(c)
