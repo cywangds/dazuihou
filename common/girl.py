@@ -21,8 +21,8 @@ class Mysqlcy(object):
 
     def connect(self):
         #self.db=pymysql.connect(host='39.97.246.118',user='saas_test',password='SaaS2019#Sql',db='saas_db_test',port=3306,charset='utf8')
-        #self.conn = pymysql.connect(host='10.0.30.82',user='wangchaoyue',password='qwer1234',db='dabai',port=3306,charset='utf8')    #  可以把主机连接等写入配置文件 等
-        self.conn = pymysql.connect(host='hw-db.jimijiayuan.cn',user='saas_test_hw',password='SaaS2022#Sql',db='saas_db_test_hw',port=15307,charset='utf8')
+        self.conn = pymysql.connect(host='10.0.30.82',user='wangchaoyue',password='qwer1234',db='dabai',port=3306,charset='utf8')    #  可以把主机连接等写入配置文件 等
+        #self.conn = pymysql.connect(host='hw-db.jimijiayuan.cn',user='saas_test_hw',password='SaaS2022#Sql',db='saas_db_test_hw',port=15307,charset='utf8')
         self.cursor=self.conn.cursor(cursor=pymysql.cursors.DictCursor)
 
     # 获取所以数据
@@ -210,7 +210,7 @@ def calculate(request_data: Item):
 @app.get('/shua')
 def shua():
 
-    Mysqlcy().szwz()
+    Mysqlcy().bx()
     # a=random.randint(1,5)
     # time.sleep(a)
     return {"status":'200'}
