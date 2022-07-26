@@ -14,6 +14,6 @@ if __name__ == '__main__':
     #app.run(host='10.0.20.114',port=9009)
 
     #上线地址
-    app.run(host='10.0.30.82',port=9009)
+    app.run(host='10.0.30.239',port=9009)
     sys.path.append(os.path.dirname(sys.path[0]))
 
