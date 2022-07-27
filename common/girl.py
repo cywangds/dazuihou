@@ -5,12 +5,17 @@
 # @function: post service of fastapi
 
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI,Form
 #from MysqlObject import *
 import random
 from time import strftime,localtime
 import time
 import pymysql
+from typing import Optional,Set
+
+class Item(BaseModel):
+    name: str
+    tags: Set[str]=[]
 
 
 app = FastAPI()
@@ -92,6 +97,12 @@ class Mysqlcy(object):
             print(e)
         else:
             self.conn.commit;
+
+    def ccc(self):
+
+        sqll = "SELECT * FROM B LEFT JOIN A ON B.id=A.user_id"
+        Mysqlcy.get_all(self, sqll)
+
 
     def kepz(self):
 
@@ -195,22 +206,19 @@ class Mysqlcy(object):
             self.conn.commit;
 
 
-class Item(BaseModel):
-    a: str = None
-    b: str = None
 
-@app.post('/test')
-def calculate(request_data: Item):
-    a = request_data.a
-    b = request_data.b
-    c = int(a) +int(b)
-    res = {"res":c}
+
+@app.post('/test/',response_model=Item)
+async def test2(item: Item):
+    res = {"res":item}
+    print(item)
     return res
 
 @app.get('/shua')
 def shua():
 
-    Mysqlcy().bx()
+    Mysqlcy().ccc()
+    #Mysqlcy().bx()
     # a=random.randint(1,5)
     # time.sleep(a)
     return {"status":'200'}

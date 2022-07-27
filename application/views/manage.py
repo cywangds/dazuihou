@@ -4,6 +4,7 @@ from flask import Flask,redirect,render_template,request
 from common.MysqlObject import Mysqls
 import requests
 import os
+from common import basejm
 
 app=Flask(__name__,template_folder='../templates',static_folder='static')
 
@@ -16,6 +17,10 @@ def index():
 @app.route('/phone', methods=['GET', 'POST'])
 def phone():
     return render_template('phone.html')
+
+@app.route('/jmjm', methods=['GET', 'POST'])
+def jmjm():
+    return render_template('jm.html')
 
 @app.route('/project', methods=['GET', 'POST'])
 def project():
@@ -58,3 +63,29 @@ def kpz():
 @app.route('/phoneurl', methods=['GET', 'POST'])
 def phoneurl():
     return render_template('index1.html')
+
+
+
+@app.route('/jm', methods=['GET', 'POST'])
+def jm():
+
+    try:
+        if request.method=='POST':
+            phone=request.form.get('a')
+            phone = basejm.AesCrypt().encrypt(str(phone))
+            return phone
+
+    except:
+        return redirect("/phone")
+
+@app.route('/jiem', methods=['GET', 'POST'])
+def jiem():
+
+    try:
+        if request.method=='POST':
+            phone=request.form.get('a')
+            phone = basejm.AesCrypt().decrypt(str(phone))
+            return phone
+
+    except:
+        return redirect("/phone")

@@ -1,0 +1,81 @@
+<!--
+ * @Description:
+ * @Date: 2021-12-02 16:56:25
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>技术部颜值担当!</title>
+	  <link rel="stylesheet" href="http://css.chahuo.com/main.css">
+      <script src="https://cdn.bootcdn.net/ajax/libs/qs/6.11.0/qs.min.js"></script>
+  </head>
+  <body>
+
+<div class="panel"><div class="panel_body">
+<form class="form_default">
+	<div class="group">
+		<label for="source" style="display: block;">加密前字符串</label>
+		<textarea id="source" name="source" rows="5"></textarea>
+	</div>
+	<div class="group" id="p_div" style="display:none;">
+		<label for="pwd">密钥</label>
+		<input type="text" id="pwd">
+	</div>
+	<div class="group">
+		<button type="button" class="btn_primary" onclick="jm(1)">加密</button>
+		<button type="button" class="btn_primary" onclick="jm(2)">解密</button>
+
+	</div>
+
+</form>
+</div></div>
+<div class="panel"><div class="panel_body">
+<form class="form_default">
+	<div class="group">
+		<label for="result" style="display: block;">结果</label>
+		<textarea id="result" name="result" rows="5"></textarea>
+	</div>
+</form>
+</div></div>
+  </body>
+<script>
+    let sourceEle = document.getElementById('source')
+    let resultEle = document.getElementById('result')
+    let jm = function(e){
+        console.log()
+            if(e===1){
+                console.log(JSON.stringify({a:sourceEle.value}));
+                    fetch('http://10.0.20.237:9009/jm',{
+            method:'POST',
+            headers:{
+            'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: Qs.stringify({a:sourceEle.value})
+            }).then(res => res.text()).then(res => {
+                        console.log(res)
+                        resultEle.value = res
+            })
+            }else{
+                console.log(JSON.stringify({a:sourceEle.value}));
+                    fetch('http://10.0.20.237:9009/jiem',{
+            method:'POST',
+            headers:{
+            'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: Qs.stringify({a:sourceEle.value})
+            }).then(res => res.text()).then(res => {
+                        console.log(res)
+                        resultEle.value = res
+            })
+            }
+
+    }
+
+
+
+</script>
+</html>
+
+
+
